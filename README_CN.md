@@ -500,25 +500,3 @@ python train.py
 ```
 
 运行会重新生成 `assets/` 与 `results/`。要发布本次 v0，上传这些项目文件即可；不要上传本地虚拟环境 `.venv/`。
-
-## 13. 与完整 Transformer 的关系及后续实验
-
-v0 保留 scaled dot-product attention、softmax、可训练 embedding、交叉熵与反向传播。尚未加入 multi-head attention、输入位置编码、FFN、残差连接、LayerNorm、encoder 堆叠、自回归 decoder 与 causal mask。
-
-后续计划：
-
-- [ ] 使用不同词集合与不同目标句，让输出必须依赖输入内容。
-- [ ] 加入始终输出固定句子的 baseline，明确它在什么任务上失效。
-- [ ] 分别冻结 embedding、查询或投影，观察参数如何协作。
-- [ ] 加入无 attention 的 baseline，比较不同结构。
-- [ ] 再逐步加入位置编码、多头注意力、FFN、残差与 LayerNorm。
-- [ ] 扩展到自回归 encoder–decoder，并在独立数据上评估。
-
-v0 的收获是将一个抽象公式拆成能计算、能检查的过程：**预测由参数决定，loss 衡量当前预测，链式法则计算参数的局部影响，优化器反复据此更新参数。**
-
-## 参考资料
-
-- [PyTorch: Autograd mechanics](https://docs.pytorch.org/docs/2.14/notes/autograd.html)
-- [PyTorch: CrossEntropyLoss](https://docs.pytorch.org/docs/2.14/generated/torch.nn.CrossEntropyLoss.html)
-
-
