@@ -473,30 +473,3 @@ $$
 Value 与分类矩阵可以共同学习一种编码，使来自 `banana` 的信息帮助输出 `I`。训练只约束最后预测的损失，并没有规定 attention 必须逐词对齐。因此，“输出第一位应该是 I，所以第一位一定逐渐最关注 I”并不是该模型的保证。
 
 这也说明 attention 热力图与预测概率是两种不同的量：前者分配输入信息，后者在词汇表上分配输出概率。
-
-## 12. 如何运行与放到 GitHub
-
-项目文件：
-
-| 路径 | 内容 |
-|---|---|
-| `README.md` | 本文 |
-| `train.py` | 模型、训练、手算梯度检查、有限差分与绘图 |
-| `requirements.txt` | 本次实验使用的依赖版本 |
-| `assets/` | README 使用的四张图 |
-| `results/dataset.csv` | 所有 24 个样本 |
-| `results/training.csv` | 每轮 loss 与准确率 |
-| `results/run.json` | 参数、embedding 轨迹、中间矩阵与梯度验证 |
-
-使用 Python 3.12，在项目文件夹中运行：
-
-```bash
-python -m venv .venv
-# macOS / Linux
-source .venv/bin/activate
-# Windows PowerShell 使用：.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python train.py
-```
-
-运行会重新生成 `assets/` 与 `results/`。要发布本次 v0，上传这些项目文件即可；不要上传本地虚拟环境 `.venv/`。
